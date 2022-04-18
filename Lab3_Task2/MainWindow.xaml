@@ -1,0 +1,105 @@
+﻿<Window x:Class="Lab3_Task2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab3_Task2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Content="Rotate"
+            FontSize="20"
+            Margin="10"/>
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Content="Scale"
+            FontSize="20"
+            Margin="10"/>
+        <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            Content="Skew"
+            FontSize="20"
+            Margin="10"/>
+        <Label
+            Grid.Row="3"
+            Grid.Column="0"
+            Content="Translate"
+            FontSize="20"
+            Margin="10"/>
+
+        <Slider 
+            Grid.Row="0"
+            Grid.Column="1"
+            Name="rotateSlider"
+            Margin="10"
+            VerticalAlignment="Center"
+            Background="DeepSkyBlue"
+            Minimum="0"
+            Maximum="360"/>
+        <Slider 
+            Grid.Row="1"
+            Grid.Column="1"
+            Name="scaleSlider"
+            Margin="10"
+            VerticalAlignment="Center"
+            Background="Firebrick"
+            Minimum="1"
+            Maximum="20"/>
+        <Slider 
+            Grid.Row="2"
+            Grid.Column="1"
+            Name="skewSlider"
+            Margin="10"
+            VerticalAlignment="Center"
+            Background="Gold"
+            Minimum="0"
+            Maximum="180"/>
+        <Slider 
+            Grid.Row="3"
+            Grid.Column="1"
+            Name="transSlider"
+            Margin="10"
+            VerticalAlignment="Center"
+            Background="Indigo"
+            Minimum="-360"
+            Maximum="360"/>
+        <Grid
+            Grid.Row="4"
+            Grid.ColumnSpan="2">
+            <Rectangle
+                Margin="10"
+                Height="200"
+                Width="200"
+                Fill="PaleVioletRed"
+                RenderTransformOrigin="0.5, 0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="{Binding ElementName=rotateSlider, Path=Value}"/>
+                        <ScaleTransform 
+                            ScaleX="{Binding ElementName=scaleSlider, Path=Value}"
+                            ScaleY="{Binding ElementName=scaleSlider, Path=Value}"/>
+                        <SkewTransform AngleX="{Binding ElementName=skewSlider, Path=Value}"/>
+                        <TranslateTransform X="{Binding ElementName=transSlider,Path=Value}"/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                
+            </Rectangle>
+        </Grid>
+    </Grid>
+</Window>
